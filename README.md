@@ -494,7 +494,17 @@ FROM textile_storage
 where (roll*square) > 100
 GROUP BY name;A
 
-
+CREATE PROCEDURE prefix()
+LANGUAGE SQL
+AS $$
+UPDATE orders
+SET prefix = 'New'
+WHERE id_orders > 10;
+UPDATE orders
+SET prefix = 'Done'
+WHERE id_orders <= 10
+$$;
+CALL prefix();
 
 
 
